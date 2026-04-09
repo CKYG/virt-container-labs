@@ -62,11 +62,8 @@ L4:
 用ssh指令測試是否可連線
 
 ## 網路拓樸圖
-dev-a (NAT + Host-only)
-        |
-        | 192.168.152.x
-        |
-server-b (Host-only)
+<img width="277" height="132" alt="image" src="https://github.com/user-attachments/assets/eaaf6581-166d-491d-9dc5-3cb5369612ba" />
+
 
 ## 排錯紀錄
 - 症狀：有時候SSH連不上，ping對方會失敗
