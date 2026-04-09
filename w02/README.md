@@ -49,18 +49,17 @@
 
 
 ## 排錯順序
-（寫出你的 L2 → L3 → L4 排錯步驟與每層使用的命令）
 
 L2:
-用`ip address show`檢查網卡是否為UP和確認是否有IP
+用ip address show檢查網卡是否為UP和確認是否有IP
 
 L3:
-用`ip route show`檢查路由設定
-用`ping`測試兩台主機是否可連
+用ip route show檢查路由設定
+用ping測試兩台主機是否可連
 
 L4:
-用`ss -tlnp | grep :22`檢查SSH服務是否監聽
-用 `ssh` 指令測試是否可連線
+用ss -tlnp | grep :22檢查SSH服務是否監聽
+用ssh指令測試是否可連線
 
 ## 網路拓樸圖
 dev-a (NAT + Host-only)
@@ -70,20 +69,20 @@ dev-a (NAT + Host-only)
 server-b (Host-only)
 
 ## 排錯紀錄
-- 症狀：SSH無法連線 or ping失敗
-- 診斷：我先用`ip address show`檢查網卡是否正常嗎
-  用`ping`測試網路是否連通嗎
-最後用了`ss -tlnp`檢查SSH是否在監聽嗎
-- 修正：當網卡為 DOWN 時，使用 `ip link set <介面> up` 啟用網卡
-當 SSH 停止時，使用 `systemctl start ssh` 啟動服務
-- 驗證：重新使用 ping 測試網路
-再使用 ssh 指令確認可以正常連線
+- 症狀：有時候SSH連不上，ping對方會失敗
+- 診斷：我先用ip address show看網卡有沒有開
+再用ping測試兩台電腦有沒有連通
+如果ping問題，就用ss -tlnp確認SSH有沒有監聽
+- 修正：如果發現網卡是DOWN，就用ip link set <介面> up把它打開
+如果是SSH沒開，就用systemctl start ssh重新啟動
+- 驗證：修好之後再用ping 測一次網路
+最後再用ssh連線，看能不能正常連上
 
 ## 設計決策
 
-本實驗採用 dev-a 使用 NAT + Host-only 雙網卡設計，而 server-b 僅使用 Host-only。
+這次我是讓dev-a用NAT加Host-only，server-b只用Host-only。
 
-dev-a 透過 NAT 可連接外網，用於安裝套件與更新系統；
-Host-only 則建立一個內部網路，使 dev-a 與 server-b 可以直接通訊。
-
-server-b 不配置 NAT，是為了模擬內部伺服器環境，避免其直接連外，並確保測試環境的隔離性與穩定性。
+dev-a用NAT是因為需要上網（安裝東西or更新），
+Host-only是讓兩台VM可以在同一個內部網路互相連線。
+server-b不用NAT，是因為想把它當成一台內部用的伺服器，
+讓它不能直接上網，這樣環境比較單純，也比較好測試網路狀況。
