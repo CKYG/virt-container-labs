@@ -62,7 +62,7 @@ timeout 是連線送出去後，但是對方沒有回應，可能是被防火牆
 refused 是已經連到對方的主機，但是port沒有開啟服務，Ex.SSH沒有啟動。
 
 ## 網路拓樸圖
-<img width="239" height="604" alt="image" src="https://github.com/user-attachments/assets/5b3045d0-ca39-4b40-a5aa-3fd61a2cc604" />
+![network](./network-diagram.png)
 
 
 ## 排錯紀錄
