@@ -62,13 +62,27 @@ timeout 是連線送出去後，但是對方沒有回應，可能是被防火牆
 refused 是已經連到對方的主機，但是port沒有開啟服務，Ex.SSH沒有啟動。
 
 ## 網路拓樸圖
-（嵌入或連結 network-diagram）
+<img width="239" height="604" alt="image" src="https://github.com/user-attachments/assets/5b3045d0-ca39-4b40-a5aa-3fd61a2cc604" />
+
 
 ## 排錯紀錄
-- 症狀：
-- 診斷：（你首先查了什麼？）
-- 修正：（做了什麼改動？）
-- 驗證：（如何確認修正有效？）
+- 症狀：一開始SSH連不到，而且會出現 timed out or connection refused。
+- 診斷：一開始我先ping看兩台有沒有通確認網路正常。
+再用ss -tlnp | grep :22檢查SSH有沒有監聽。
+也用ufw status看防火牆規則。
+- 修正：如果是防火牆問題，就開放port 22
+如果是SSH沒開，就用systemctl start ssh啟動服務。
+
+- 驗證：重新用ping測試連線
+再用ssh登入確認可以正常連線
 
 ## 設計決策
-（說明本週至少 1 個技術選擇與取捨，例如：為什麼 db 允許 bastion 直連而不是只允許從 app 跳？）
+我是用bastion當中間跳板，app跟db都放在內網裡面
+bastion有NAT所以可以連外也可以當入口去連其他機器
+app跟db只用Host-only，就是不讓它們直接上網，比較安全一點
+
+db讓bastion可以直接連，是因為管理起來比較方便，
+不然每次都要先進app再跳一次，有點麻煩
+
+重點就是讓外面的人不能直接碰到內部
+一定要先進bastion才能往裡面走，安全性會比較高。
