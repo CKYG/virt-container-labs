@@ -62,7 +62,7 @@ L4:
 用ssh指令測試是否可連線
 
 ## 網路拓樸圖
-<img width="277" height="132" alt="image" src="https://github.com/user-attachments/assets/eaaf6581-166d-491d-9dc5-3cb5369612ba" />
+![network](./network-diagram.png)
 
 
 ## 排錯紀錄
