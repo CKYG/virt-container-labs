@@ -34,9 +34,6 @@
 | server-b 介面狀態 | UP | DOWN | UP |
 | dev-a ping server-b | 成功 | 失敗 | 成功 |
 | dev-a SSH server-b | 成功 | 失敗 | 成功 |
-<img width="821" height="326" alt="image" src="https://github.com/user-attachments/assets/9d47cf55-3013-4241-8269-d4391ccd60a9" />
-<img width="663" height="177" alt="image" src="https://github.com/user-attachments/assets/ef348d7e-3bbe-47a1-a093-e8454f6eaffd" />
-<img width="808" height="393" alt="image" src="https://github.com/user-attachments/assets/6fe19b79-911b-4f3a-9aa8-6417c3974095" />
 
 ## 故障演練二：SSH 服務停止
 
@@ -45,7 +42,6 @@
 | ss -tlnp grep :22 | 有監聽 | 無監聽 | 有監聽 |
 | dev-a ping server-b | 成功 | 成功 | 成功  |
 | dev-a SSH server-b | 成功 | Connection refused | 成功 |
-<img width="803" height="107" alt="image" src="https://github.com/user-attachments/assets/5c1cd329-b009-4983-9cd8-82c1a745d3e6" />
 
 
 ## 排錯順序
