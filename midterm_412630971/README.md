@@ -98,25 +98,33 @@ ping -c 2 192.168.152.128
 ![ssh-proxyjump](ssh-proxyjump.png)
 
 ## 4. Part C：Docker 服務
-### Docker 狀態
-![docker](images/docker-running.png)
+### Docker 運行狀態
+![docker-running](docker-running.png)
 
----
-
-### 服務測試（從 bastion）
-![curl](images/curl-running.png)
-<systemctl status docker + curl 輸出>
+### nginx 服務測試（HTTP 200）
+![curl-running](curl-running.png)
 
 ## 5. Part D：故障演練
-### 故障 1：<F1/F2/F3 擇一>
+### 故障 1：<F1>
+- 注入方式：sudo ip link set ens33 down
+- 故障前：
+![fault-F1-before](fault-F1-before.png)
+
+- 故障中：
+![fault-F1-during](fault-F1-during.png)
+
+- 回復後：
+![fault-F1-after](fault-F1-after.png)
+
+- 診斷推論：
+關閉ens33（Host-only）後，ssh app 出現 timeout / no route，表示 Host 無法透過內網連到 app，判斷為網路層（L2/L3）問題。
+
+### 故障 2：<F3>
 - 注入方式：
 - 故障前：
 - 故障中：
 - 回復後：
 - 診斷推論：
-
-### 故障 2：<另一個>
-（同上）
 
 ### 症狀辨識（若選 F1+F2 必答）
 兩個都 timeout，我怎麼分？
