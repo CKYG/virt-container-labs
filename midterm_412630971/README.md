@@ -98,6 +98,13 @@ ping -c 2 192.168.152.128
 ![ssh-proxyjump](ssh-proxyjump.png)
 
 ## 4. Part C：Docker 服務
+### Docker 狀態
+![docker](images/docker-running.png)
+
+---
+
+### 服務測試（從 bastion）
+![curl](images/curl-running.png)
 <systemctl status docker + curl 輸出>
 
 ## 5. Part D：故障演練
