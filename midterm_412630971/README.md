@@ -164,7 +164,7 @@ node_modules
 docker history:
 ![docker-history](docker-history.png)
 從 bastion curl http://<APP>:8081 看到學號的證據
-![curl-8081.png](curl-8081.png.png)
+![curl-8081.png](curl-8081.png)
 
 ### 每一層說明
 
