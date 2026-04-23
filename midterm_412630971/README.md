@@ -185,3 +185,6 @@ docker history:
 ![memory-inspect](memory-inspect.png)
 
 ![memory-cgroup](memory-cgroup.png)
+
+一句話說明「64m 在 cgroup 裡是多少 bytes」
+A:64m 在cgroup中對應為67108864 bytes（64×1024×1024）
