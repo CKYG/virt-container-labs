@@ -108,23 +108,35 @@ ping -c 2 192.168.152.128
 ### 故障 1：<F1>
 - 注入方式：sudo ip link set ens33 down
 - 故障前：
-![fault-F1-before](fault-F1-before.png)
+![fault-A-before](fault-A-before.png)
 
 - 故障中：
-![fault-F1-during](fault-F1-during.png)
+![fault-A-during](fault-A-during.png)
 
 - 回復後：
-![fault-F1-after](fault-F1-after.png)
+![fault-A-after](fault-A-after.png)
 
 - 診斷推論：
 關閉ens33（Host-only）後，ssh app 出現 timeout / no route，表示 Host 無法透過內網連到 app，判斷為網路層（L2/L3）問題。
 
 ### 故障 2：<F3>
 - 注入方式：
+sudo systemctl stop docker
+sudo systemctl stop docker.socket
+
 - 故障前：
+![fault-B-before](fault-B-before.png)
+
 - 故障中：
+![fault-B-during](fault-B-during.png)
+
 - 回復後：
+![fault-B-after](fault-B-after.png)
+
 - 診斷推論：
+在故障中ssh app 仍可正常連線，但docker ps顯示
+Cannot connect to the Docker daemon，表示網路層正常，
+問題發生在服務層Docker daemon 被停止。
 
 ### 症狀辨識（若選 F1+F2 必答）
 兩個都 timeout，我怎麼分？
