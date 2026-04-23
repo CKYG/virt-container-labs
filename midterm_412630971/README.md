@@ -95,26 +95,26 @@ ping -c 2 192.168.152.128
 
 ### ProxyJump 成功證據
 
-![ssh-proxyjump](ssh-proxyjump.png)
+![ssh-proxyjump](screenshots/ssh-proxyjump.png)
 
 ## 4. Part C：Docker 服務
 ### Docker 運行狀態
-![docker-running](docker-running.png)
+![docker-running](screenshots/docker-running.png)
 
 ### nginx 服務測試（HTTP 200）
-![curl-running](curl-running.png)
+![curl-running](screenshots/curl-running.png)
 
 ## 5. Part D：故障演練
 ### 故障 1：<F1>
 - 注入方式：sudo ip link set ens33 down
 - 故障前：
-![fault-A-before](fault-A-before.png)
+![fault-A-before](screenshots/fault-A-before.png)
 
 - 故障中：
-![fault-A-during](fault-A-during.png)
+![fault-A-during](screenshots/fault-A-during.png)
 
 - 回復後：
-![fault-A-after](fault-A-after.png)
+![fault-A-after](screenshots/fault-A-after.png)
 
 - 診斷推論：
 關閉ens33（Host-only）後，ssh app 出現 timeout / no route，表示 Host 無法透過內網連到 app，判斷為網路層（L2/L3）問題。
@@ -125,13 +125,13 @@ sudo systemctl stop docker
 sudo systemctl stop docker.socket
 
 - 故障前：
-![fault-B-before](fault-B-before.png)
+![fault-B-before](screenshots/fault-B-before.png)
 
 - 故障中：
-![fault-B-during](fault-B-during.png)
+![fault-B-during](screenshots/fault-B-during.png)
 
 - 回復後：
-![fault-B-after](fault-B-after.png)
+![fault-B-after](screenshots/fault-B-after.png)
 
 - 診斷推論：
 在故障中ssh app 仍可正常連線，但docker ps顯示
@@ -162,9 +162,9 @@ node_modules
 *.log
 ```
 docker history:
-![docker-history](docker-history.png)
+![docker-history](screenshots/docker-history.png)
 從 bastion curl http://<APP>:8081 看到學號的證據
-![curl-8081.png](curl-8081.png)
+![curl-8081.png](screenshots/curl-8081.png)
 
 ### 每一層說明
 
@@ -182,9 +182,9 @@ docker history:
 只有當index.html改變時才會重新build COPY這一層，這樣可以讓build速度變快也比較有效率。
 
 ## Bonus 2：Cgroup 限制觀察
-![memory-inspect](memory-inspect.png)
+![memory-inspect](screenshots/memory-inspect.png)
 
-![memory-cgroup](memory-cgroup.png)
+![memory-cgroup](screenshots/memory-cgroup.png)
 
 一句話說明「64m 在 cgroup 裡是多少 bytes」
 A:64m 在cgroup中對應為67108864 bytes（64×1024×1024）
