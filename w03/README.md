@@ -14,31 +14,31 @@
 - 金鑰類型：ed25519
 - 公鑰部署到：app 和 db 的 ~/.ssh/authorized_keys
 - 免密碼登入驗證：
-  - bastion → app：<img width="692" height="51" alt="螢幕擷取畫面 2026-04-10 115245" src="https://github.com/user-attachments/assets/5af35df3-8ce9-4a37-8847-415dfdbcd81c" />
+  - bastion → app：![app](screenshots/app.png)
 
-  - bastion → db：<img width="659" height="48" alt="image" src="https://github.com/user-attachments/assets/2ab6c1c1-5b4d-43bb-acb8-fbb5d6fd565f" />
+  - bastion → db：![db](screenshots/db.png)
 
 
 ## 防火牆規則
 
 ### app 的 ufw status
-<img width="629" height="215" alt="image" src="https://github.com/user-attachments/assets/b09ea330-c0a0-44e9-9e94-3d56ee557dbd" />
+![appufwstatus](screenshots/appufwstatus.png)
 
 
 ### db 的 ufw status
-<img width="661" height="233" alt="image" src="https://github.com/user-attachments/assets/cfb4f0f1-70b2-4b47-86bc-3c702503d6b8" />
+![dbufwstatus](screenshots/dbufwstatus.png)
 
 
 ### 防火牆確實在擋的證據
-<img width="657" height="46" alt="image" src="https://github.com/user-attachments/assets/a3c08ef1-4a89-48c5-af53-e796d09b6f8b" />
+![curl8080](screenshots/curl8080.png)
 
 
 ## ProxyJump 跳板連線
-- 指令：<img width="898" height="25" alt="image" src="https://github.com/user-attachments/assets/b8993081-1220-428b-bedb-ff4c9167e013" />
+- 指令：![ProxyJump1](screenshots/ProxyJump1.png)
 
-- 驗證輸出：<img width="905" height="91" alt="image" src="https://github.com/user-attachments/assets/32cff138-f12a-43ae-b18a-36c8d2a030d8" />
+- 驗證輸出：![ProxyJump2](screenshots/ProxyJump2.png)
 
-- SCP 傳檔驗證：<img width="1065" height="176" alt="image" src="https://github.com/user-attachments/assets/9c0dbeee-cd13-4861-8243-8887c13954cb" />
+- SCP 傳檔驗證：![ProxyJump3](screenshots/ProxyJump3.png)
 
 
 ## 故障場景一：防火牆全封鎖
