@@ -19,13 +19,13 @@
 ## 權限結構
 
 ### Docker Socket 權限解讀
-<img width="730" height="103" alt="image" src="https://github.com/user-attachments/assets/f29498d9-06c8-4ab1-9238-2d792ea411da" />
+![1](screenshots/1.png)
 owner（root）：有 rw 權限，可以讀寫 socket
 group（docker）：有 rw 權限，docker 群組的使用者也可以使用 docker
 others：沒有任何權限（---），一般使用者不能使用 docker
 
 ### 使用者群組
-<img width="1275" height="65" alt="image" src="https://github.com/user-attachments/assets/18569105-f319-47be-a123-077227f88e4e" />
+![2](screenshots/2.png)
 從輸出可以看到目前使用者有在docker群組中
 
 ### 安全意涵
@@ -38,11 +38,11 @@ docker群組權限很大因為可以直接操作 docker
 ## 程序與服務管理
 
 ### systemctl status docker
-<img width="1284" height="538" alt="image" src="https://github.com/user-attachments/assets/45060b8f-efca-4995-8f16-13f5f9b4ef33" />
+![3](screenshots/3.png)
 
 
 ### journalctl 日誌分析
-<img width="1306" height="230" alt="image" src="https://github.com/user-attachments/assets/94dfbe2a-62a6-4b93-9c8c-64a794a4b3b1" />
+![4](screenshots/4.png)
 從日誌中可以看到docker daemon的啟動過程
 包含初始化
 API listen
@@ -57,7 +57,7 @@ dockerd是在背景服務+執行
 
 ## 環境變數
 
-- $PATH：<img width="806" height="73" alt="image" src="https://github.com/user-attachments/assets/13f6d386-57cc-4d0c-bef9-cecd3e0e52de" />
+- $PATH：![5](screenshots/5.png)
 
 - which docker：/usr/bin/docker
 - 容器內外環境變數差異觀察：容器裡的環境變數跟主機不太一樣，PATH會比較簡單，因為容器是獨立的環境
