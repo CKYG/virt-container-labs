@@ -2,11 +2,11 @@
 ## 環境資訊
 - Host OS：Windows 11
 - VM 名稱：vct-w01-412630971
-- Ubuntu 版本：![image](https://hackmd.io/_uploads/BkEMO5MsZl.png)
+- Ubuntu 版本：![ubuntu](screenshots/ubuntu.png)
 
-- Docker 版本：![image](https://hackmd.io/_uploads/r1CNO5GiZg.png)
+- Docker 版本：![Docker](screenshots/Docker.png)
 
-- Docker Compose 版本：![image](https://hackmd.io/_uploads/SJbUO9foWl.png)
+- Docker Compose 版本：![DockerCompose](screenshots/DockerCompose.png)
 ## VM 資源配置驗證
 | 項目 | VMware 設定值 | VM 內命令 | VM 內輸出 |
 |---|---|---|---|
@@ -15,22 +15,22 @@
 | 磁碟 | 40 GB | `df -h /` | /dev/sda2 40G 12G 26G 30% / |
 | Hypervisor | VMware | `lscpu \| grep Hypervisor` | Hypervisor vendor: VMware |
 ## 四層驗收證據
-- [x] ① Repository：`cat /etc/apt/sources.list.d/docker.list` 輸出![image](https://hackmd.io/_uploads/Sk5U9qGoWx.png)
+- [x] ① Repository：`cat /etc/apt/sources.list.d/docker.list` ![Repository](screenshots/Repository.png)
 
-- [x] ② Engine：`dpkg -l | grep docker-ce` 輸出![image](https://hackmd.io/_uploads/Syn_ccGs-e.png)
+- [x] ② Engine：`dpkg -l | grep docker-ce` ![Engine](screenshots/Engine.png)
 
-- [x] ③ Daemon：`sudo systemctl status docker` 顯示 active![image](https://hackmd.io/_uploads/Syhi55fsZg.png)
+- [x] ③ Daemon：`sudo systemctl status docker` 顯示 active![Daemon](screenshots/Daemon.png)
 
-- [x] ④ 端到端：`sudo docker run hello-world` 成功輸出![image](https://hackmd.io/_uploads/Sk21s5GoZl.png)
+- [x] ④ 端到端：`sudo docker run hello-world` 成功輸出![hello-world](screenshots/hello-world.png)
 
-- [x] Compose：`docker compose version` 可執行![image](https://hackmd.io/_uploads/B1sgo9ziWe.png)
+- [x] Compose：`docker compose version` 可執行![Compose](screenshots/Compose.png)
 ## 容器操作紀錄
-- [x] nginx：`sudo docker run -d -p 8080:80 nginx` + `curl localhost:8080` 輸出![image](https://hackmd.io/_uploads/rkol65fsWe.png)
+- [x] nginx：`sudo docker run -d -p 8080:80 nginx` + `curl localhost:8080` 輸出![nginx](screenshots/nginx.png)
 
 
-- [x] alpine：`sudo docker run -it --rm alpine /bin/sh` 內部命令與輸出![image](https://hackmd.io/_uploads/S1OXoqGj-l.png)
+- [x] alpine：`sudo docker run -it --rm alpine /bin/sh` 內部命令與輸出![alpine](screenshots/alpine.png)
 
-- [x] 映像列表：`sudo docker images` 輸出![image](https://hackmd.io/_uploads/SJVHsqfjWe.png)
+- [x] 映像列表：`sudo docker images` 輸出![sudo](screenshots/sudo.png)
 ## Snapshot 清單
 
 | 名稱 | 建立時機 | 用途說明 | 建立前驗證 |
@@ -47,7 +47,7 @@
 | hello-world 成功 | 是 | N/A | 是 |
 | nginx curl 成功 | 是 | N/A | 是 |
 
-![image](https://hackmd.io/_uploads/H1wJXjzjbl.png)
+![snapshot](screenshots/snapshot.png)
 
 ## 手動修復 vs Snapshot 回復
 
