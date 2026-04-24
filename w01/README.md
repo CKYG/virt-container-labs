@@ -60,3 +60,20 @@
 - 新增條件：進行重大修改前
 - 保留上限：3個
 - 刪除條件：舊的snapshot沒有用時
+## 最小可重現命令鏈
+ls /etc/apt/sources.list.d/
+apt-cache policy docker-ce | head -5
+sudo systemctl status docker --no-pager
+sudo docker run --rm hello-world
+sudo docker images
+
+## 排錯紀錄
+- 症狀：ssh 連線 app 出現 timeout
+- 診斷：先用 ping 測試連線，再用 ip addr 確認網卡狀態，發現是網路介面問題
+- 修正：重新啟用網卡或修正網路設定
+- 驗證：重新 ssh 可以成功登入，連線正常
+
+## 設計決策
+我在VM中安裝Docker，而不是直接在Host OS上使用 Docker。
+因為VM可以提供一致的Linux環境，避免Windows或macOS環境差異，
+且可透過snapshot快速回復，降低失敗的風險。
