@@ -11,20 +11,20 @@
 ## 連線驗證紀錄
 
 - [x] dev-a NAT 可上網：`ping google.com` 輸出
-<img width="1482" height="967" alt="image" src="https://github.com/user-attachments/assets/cbd4f435-5fab-4347-a976-20fdb0ae71fe" />
+![google.com](screenshots/google.com.png)
 
 - [x] 雙向互 ping 成功：貼上雙方 `ping` 輸出
-<img width="658" height="197" alt="image" src="https://github.com/user-attachments/assets/127e0a0d-54d9-4705-9195-d901cd4875e2" />
-<img width="636" height="174" alt="image" src="https://github.com/user-attachments/assets/5a733d2b-804c-4790-8b39-2e97e2ed17e5" />
+![ping1](screenshots/ping1.png)
+![ping2](screenshots/ping2.png)
 
 - [x] SSH 連線成功：`ssh <user>@<ip> "hostname"` 輸出
-<img width="814" height="223" alt="image" src="https://github.com/user-attachments/assets/d74fbe09-5b97-478f-b4de-79472393011b" />
+![hostname](screenshots/hostname.png)
 
 - [x] SCP 傳檔成功：`cat /tmp/test-from-dev.txt` 在 server-b 上的輸出
-<img width="813" height="176" alt="image" src="https://github.com/user-attachments/assets/44cdb72a-f229-4606-87b0-9fe44e22b2ca" />
+![test-from-dev.txt](screenshots/test-from-dev.txt.png)
 
 - [x] server-b 不能上網：`ping 8.8.8.8` 失敗輸出
-<img width="406" height="44" alt="image" src="https://github.com/user-attachments/assets/62075d27-55ee-4371-914d-60fd2b62958b" />
+![8.8.8.8](screenshots/8.8.8.8.png)
 
 
 ## 故障演練一：介面停用
@@ -58,8 +58,7 @@ L4:
 用ssh指令測試是否可連線
 
 ## 網路拓樸圖
-![network](./network-diagram.png)
-
+![network](screenshots/network-diagram.png)
 
 ## 排錯紀錄
 - 症狀：有時候SSH連不上，ping對方會失敗
