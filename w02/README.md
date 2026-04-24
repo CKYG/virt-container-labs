@@ -58,7 +58,7 @@ L4:
 用ssh指令測試是否可連線
 
 ## 網路拓樸圖
-![network](screenshots/network-diagram.png)
+![network](network-diagram.png)
 
 ## 排錯紀錄
 - 症狀：有時候SSH連不上，ping對方會失敗
