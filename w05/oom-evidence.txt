@@ -1,0 +1,10 @@
+=== 故障前 ===
+無 OOM
+
+=== 故障中（memory=32m + dd 200m）===
+OOMKilled=true
+ExitCode=137
+
+=== 回復後（memory=256m）===
+DONE
+ExitCode=0
