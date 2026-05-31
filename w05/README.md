@@ -2,7 +2,7 @@
 
 ## Docker 環境
 
-- Storage Driver：overlayfs
+- Storage Driver：overlay2
 - Cgroup Version：2
 - Cgroup Driver：systemd
 - Default Runtime：runc
@@ -41,7 +41,7 @@
 |---|---|---|---|
 | 容器 exit code | - | 137 | 0 |
 | OOMKilled | - | true | false |
-| dmesg 關鍵字 | 無 OOM | permission denied / OOMKilled=true | 無 OOM |
+| dmesg 關鍵字 | 無 OOM | Memory cgroup out of memory  / OOMKilled=true | 無 OOM |
 
 ## Image 分層
 
@@ -101,3 +101,15 @@ container也可能受到影響
 VM是每台都有自己的系統跟kernel
 像真正分開的電腦
 所以通常比container安全
+
+## 可重跑最小命令鏈
+
+```bash
+docker info | grep -E "Storage Driver|Cgroup|Runtime"
+
+docker run -d --name chk --memory=256m alpine sleep 60
+
+docker exec chk cat /sys/fs/cgroup/memory.max
+
+docker rm -f chk
+```
