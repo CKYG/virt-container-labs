@@ -101,15 +101,3 @@ container也可能受到影響
 VM是每台都有自己的系統跟kernel
 像真正分開的電腦
 所以通常比container安全
-
-## 可重跑最小命令鏈
-
-```bash
-docker info | grep -E "Storage Driver|Cgroup|Runtime"
-
-docker run -d --name chk --memory=256m alpine sleep 60
-
-docker exec chk cat /sys/fs/cgroup/memory.max
-
-docker rm -f chk
-```
