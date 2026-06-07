@@ -2,7 +2,21 @@
 
 ## 1. 架構總覽
 <Mermaid 圖 + 一段話說明>
+```mermaid
+flowchart LR
+    Host[Host / Windows]
+    Bastion[bastion VM<br/>NAT + Host-only]
+    AppVM[app VM<br/>Host-only<br/>Docker Compose]
+    App[app service<br/>Flask :8080]
+    DB[db service<br/>PostgreSQL 16<br/>named volume db-data]
 
+    Host -- ssh app / ProxyJump --> Bastion
+    Bastion -- SSH --> AppVM
+    AppVM --> App
+    App --> DB
+    DB --> Volume[(db-data)]
+```
+延續期中bastion -> app架構，Host再透過ProxyJump進入app VM。然後在app VM上使用Docker Compose管理Flask app跟PostgreSQL db兩個service，最後資料庫資料透過named volume db-data保存並加入healthcheck、資源限制、log rotation和權限加固設定。
 ## 2. Part A：底座與基準點
 <ssh 證據 + 版本 + snapshot>
 ![ssh-and-versions](screenshots/ssh-and-versions.png)
@@ -58,5 +72,15 @@ cpu.max顯示50000 100000，代表在每100000微秒的週期內最多可使用5
 ## 7. 反思（200 字）
 這學期從 VM 做到 production-ready 容器，「隔離」這個概念在 VM、namespace、
 cgroup、權限階梯四個地方各出現一次——它們在防的東西一樣嗎？
+
+A:我這學期從VM一路做到production-ready容器後，我對(隔離)有更具體的理解了。
+雖然VM、namespace、cgroup和權限階梯都和隔離有關，但是他們要保護的對象都不一樣。
+VM是把整個系統都隔離開來，來避免不同的環境去互相影響。
+namespace則是讓容器有自己獨立的程序、網路與檔案系統視角。
+cgroup則是負責限制CPU和記憶體等資源的使用量，來避免單一容器耗盡系統的資源。
+權限階梯則是透過非root使用者、cap_drop和no-new-privileges等設定來降低安全風險。
+透過這次的實作，我發現容器不單單只是把程式包起來執行而已，而是會透過多層的機制來同時兼顧隔離、安全和穩定性。像是在part D中，我實際操作驗證到了資源限制是不是真的寫進cgroup，也觀察到權限降低後仍能正常運作。
+從VM到Docker的過程中，讓我更加了解到現代服務部屬的方式，也更加理解為何在正式環境中需要一邊考量效能、可靠性和安全性，而不只是單單可以執行程式而已。
+
 
 ## 8. Bonus（選做）
