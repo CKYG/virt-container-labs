@@ -27,25 +27,33 @@ named volume的生命週期不是跟container，而是獨立的。就算containe
 
 ## 5. Part D：生產化加固
 <權限驗證輸出 + cgroup 讀值對照表>
-### yaml 的值怎麼對回 cgroup 檔案？
+![hardening-verify](screenshots/hardening-verify.png)
+
+### yaml 的值怎麼對回 cgroup 檔案？(必答：268435456 跟 50000 100000 各自怎麼對回你 yaml 裡寫的值？)
+A:memory.max顯示268435456，代表256×1024×1024Bytes，所以對應compose.yaml的mem_limit:256m。
+cpu.max顯示50000 100000，代表在每100000微秒的週期內最多可使用50000微秒的CPU時間，也就是可使用50% CPU，所以對應compose.yaml中的cpus:"0.5"。
 
 ## 6. Part E：故障演練
-### 故障 1：<F1–F4 擇一>
-- 注入方式：
-- 故障前：
-- 故障中：
-- 回復後：
-- 診斷推論：
+### 故障 1：F1
+- 注入方式：docker compose stop db
+- 故障前：![F1-before](screenshots/fault-A-before.png)
+- 故障中：![F1-during](screenshots/fault-A-during.png)
+- 回復後：![F1-after](screenshots/fault-A-after.png)
+- 診斷推論：因為app本身仍在運作，但因為無法連線到資料庫，所以健康檢查失敗然後回傳503。所以應用程式正常，但後端服務發生問題。
 
-### 故障 2：<另一個>
-（同上）
+### 故障 2：F2
+- 注入方式：docker compose stop app
+- 故障前：![F2-before](screenshots/fault-B-before.png)
+- 故障中：![F2-during](screenshots/fault-B-during.png)
+- 回復後：![F2-after](screenshots/fault-B-after.png)
+- 診斷推論：因為app容器已停止，主機上沒有程式監聽8080 Port，所以才產生connection refused。
 
 ### 三症狀分層表（必答）
 | 症狀 | 最可能的層 | 第一條驗證命令 |
 | ---- | ---------- | -------------- |
-| timeout |  |  |
-| connection refused |  |  |
-| HTTP 503 |  |  |
+| timeout | 網路層或防火牆層 | curl -v http://目標位址 |
+| connection refused | docker compose ps | docker compose ps |
+| HTTP 503 | 應用程式依賴服務層 | docker compose logs app |
 
 ## 7. 反思（200 字）
 這學期從 VM 做到 production-ready 容器，「隔離」這個概念在 VM、namespace、
