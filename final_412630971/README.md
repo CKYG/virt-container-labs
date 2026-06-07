@@ -66,7 +66,7 @@ cpu.max顯示50000 100000，代表在每100000微秒的週期內最多可使用5
 | 症狀 | 最可能的層 | 第一條驗證命令 |
 | ---- | ---------- | -------------- |
 | timeout | 網路層或防火牆層 | curl -v http://目標位址 |
-| connection refused | docker compose ps | docker compose ps |
+| connection refused | 容器層或應用程式層 | docker compose ps |
 | HTTP 503 | 應用程式依賴服務層 | docker compose logs app |
 
 ## 7. 反思（200 字）
